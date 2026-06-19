@@ -184,7 +184,7 @@ rule.description: DLL Injection
 
 ## 📸 Screenshots Section (IMPORTANT)
 
-> Add screenshots in your GitHub repo under `/screenshots` folder
+> Add screenshots in your GitHub repo under `/Screenshots` folder
 
 ### 🔹 Wazuh Dashboard Alert
 
