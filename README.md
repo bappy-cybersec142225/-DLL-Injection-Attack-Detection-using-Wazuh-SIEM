@@ -1,5 +1,6 @@
-
+<img width="1280" height="714" alt="SOC LAB" src="https://github.com/user-attachments/assets/eb3e1b76-9192-4f9c-9b65-60d5f6bc0d47" />
 # 🛡️ DLL Injection Attack Detection using Wazuh SIEM
+(Uploading SOC LAB.png)
 
 ## 📌 Project Overview
 
@@ -27,7 +28,7 @@ The lab includes:
 ## 🧱 Lab Architecture
 
 ```
-Attacker Machine (Kali Linux / Atomic Red Team)
+Attacker Machine (Atomic Red Team)
             ↓
 Windows 11 (Sysmon Installed - Victim)
             ↓
@@ -186,21 +187,21 @@ rule.description: DLL Injection
 
 > Add screenshots in your GitHub repo under `/Screenshots` folder
 
-### 🔹 Wazuh Dashboard Alert
+### 🔹 Wazuh Dashboard and Server
 
-![Wazuh Alert](screenshots/wazuh-alert.png)
+![Wazuh server](https://github.com/bappy-cybersec142225/-DLL-Injection-Attack-Detection-using-Wazuh-SIEM/tree/main/Screenshots/Wazuah%20Server)
 
 ### 🔹 Sysmon Logs
 
-![Sysmon Logs](screenshots/sysmon-logs.png)
+![Sysmon Logs](https://github.com/bappy-cybersec142225/Splunk-SOC-Lab/tree/main/screenshots/Sysmon)
 
 ### 🔹 Attack Execution (Atomic Red Team)
 
-![Attack Simulation](screenshots/attack-simulation.png)
+![Attack Simulation](https://github.com/bappy-cybersec142225/Splunk-SOC-Lab/tree/main/screenshots/Atomic-Red-Team)
 
 ### 🔹 Custom Rule in Wazuh
 
-![Custom Rule](screenshots/custom-rule.png)
+![Custom Rule](https://github.com/bappy-cybersec142225/-DLL-Injection-Attack-Detection-using-Wazuh-SIEM/tree/main/Screenshots/Wazuh%20Agent)
 
 ---
 
