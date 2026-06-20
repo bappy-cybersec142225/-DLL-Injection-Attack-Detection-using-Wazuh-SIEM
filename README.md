@@ -1,6 +1,7 @@
 
 # 🛡️ DLL Injection Attack Detection using Wazuh SIEM
-https://github.com/bappy-cybersec142225/-DLL-Injection-Attack-Detection-using-Wazuh-SIEM/blob/main/SOC%20LAB.png
+![photo](<img width="1280" height="714" alt="SOC LAB" src="https://github.com/user-attachments/assets/42dda2e6-9ff4-48e4-aff2-fcdb61f2a11e" />)
+
 
 ## 📌 Project Overview
 
