@@ -283,7 +283,7 @@ Possible process injection activity detected
 
 ---
 
-# 📸 Screenshots
+# 📸 [Screenshots](https://github.com/bappy-cybersec142225/-DLL-Injection-Attack-Detection-using-Wazuh-SIEM/tree/main/Screenshots)
 
 Include screenshots in the following order:
 
