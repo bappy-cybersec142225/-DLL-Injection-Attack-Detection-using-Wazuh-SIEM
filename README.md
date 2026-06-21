@@ -1,4 +1,4 @@
-<imghttps://chatgpt.com/backend-api/estuary/content?id=file_00000000e04071fa8502ccc99cf4912c&ts=495018&p=fs&cid=1&sig=0a48eeeea1de22c704b6749931cf2553bbd28db5bbabe2aa786e5dea4f568c3e&v=0/>
+!(Uploading ChatGPT Image Jun 22, 2026, 12_05_13 AM.png…)
 
 
 # 🛡️ DLL Injection Detection Lab with Wazuh SIEM
