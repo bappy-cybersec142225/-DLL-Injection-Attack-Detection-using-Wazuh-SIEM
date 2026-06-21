@@ -1,6 +1,6 @@
 
 # 🛡️ DLL Injection Attack Detection using Wazuh SIEM
-![photo] (<img width="1280" height="714" alt="SOC LAB" src="https://github.com/user-attachments/assets/42dda2e6-9ff4-48e4-aff2-fcdb61f2a11e" />)
+!<img width="1280" height="714" alt="SOC LAB" src="https://github.com/user-attachments/assets/42dda2e6-9ff4-48e4-aff2-fcdb61f2a11e" />
 
 
 ## 📌 Project Overview
