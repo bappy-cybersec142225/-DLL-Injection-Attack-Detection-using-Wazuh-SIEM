@@ -1,4 +1,4 @@
-!(Uploading ChatGPT Image Jun 22, 2026, 12_05_13 AM.png…)
+<img width="1536" height="1024" alt="ChatGPT Image Jun 22, 2026, 12_05_13 AM" src="https://github.com/user-attachments/assets/094ece67-8a3f-45ce-a691-48887f6c2dd0" />!Uploading ChatGPT Image Jun 22, 2026, 12_05_13 AM.png…
 
 
 # 🛡️ DLL Injection Detection Lab with Wazuh SIEM
