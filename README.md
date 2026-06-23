@@ -1,160 +1,127 @@
 <img width="1536" height="1024" alt="ChatGPT Image Jun 22, 2026, 12_05_13 AM" src="https://github.com/user-attachments/assets/094ece67-8a3f-45ce-a691-48887f6c2dd0" />!Uploading ChatGPT Image Jun 22, 2026, 12_05_13 AM.png…
 
+# 🛡️ DLL Injection Attack Detection Using Wazuh
 
-# 🛡️ DLL Injection Detection Lab with Wazuh SIEM
-## Threat Monitoring, Detection Engineering, and Incident Investigation for MITRE ATT&CK T1055
-
-Your project is well structured, but for GitHub portfolio presentation and SOC/Blue Team documentation, it can be made more professional by adding objectives, attack flow, detection logic, MITRE mapping, screenshots section, and learning outcomes.
-
-# 🛡️ DLL Injection Attack Detection using Wazuh
-
-A Security Operations Center (SOC) lab project demonstrating the detection of DLL Injection attacks using Wazuh SIEM, Sysmon, and the MITRE ATT&CK Framework (T1055.001).
+A cybersecurity lab project demonstrating DLL Injection attack detection using **Wazuh**, **Sysmon**, and **MITRE ATT&CK T1055.001** techniques.
 
 ---
 
-## 📌 Project Overview
+## Introduction
 
-DLL Injection is a widely used process injection technique that allows an attacker to execute malicious code within the memory space of another running process. This technique is frequently leveraged for:
+Dynamic-Link Library (DLL) injection is a process injection technique used by attackers to execute malicious code within the address space of another process. This technique is commonly associated with **Privilege Escalation** and **Defense Evasion** activities and is categorized under **MITRE ATT&CK T1055.001 – Dynamic-link Library Injection**.
 
-* Defense Evasion
-* Privilege Escalation
-* Malware Execution
-* Credential Theft
-* Persistence
-
-This project demonstrates how a SOC analyst can detect DLL Injection activity using:
-
-* **Wazuh SIEM**
-* **Microsoft Sysmon**
-* **Custom Detection Rules**
-* **MITRE ATT&CK Mapping**
-
-A controlled attack was simulated using **InjectProc.exe**, while Sysmon generated telemetry and Wazuh correlated the events to produce security alerts.
+This project demonstrates how **Wazuh** and **Sysmon** can be used to detect DLL injection activity in a Windows environment. A controlled lab environment was created to simulate the attack using **InjectProc**, while Sysmon generated the corresponding events and Wazuh correlated and generated alerts based on the observed behavior.
 
 ---
 
-# 🎯 Objectives
+## Lab Environment
 
-* Deploy a Windows endpoint monitored by Wazuh.
-* Configure Sysmon for advanced process monitoring.
-* Simulate DLL Injection activity.
-* Collect Sysmon Event ID 8 (CreateRemoteThread).
-* Generate Wazuh alerts.
-* Map detections to MITRE ATT&CK T1055.001.
-* Analyze attack telemetry from a SOC perspective.
-
----
-
-# 🏗️ Lab Environment
-
-| Component        | Version / Description                 |
-| ---------------- | ------------------------------------- |
-| Wazuh Manager    | 4.5.4                                 |
-| Wazuh Agent      | 4.5.4                                 |
-| Operating System | Windows 10                            |
-| Sysmon           | Sysinternals Sysmon                   |
-| Attack Tool      | InjectProc                            |
-| Payload          | hello-world-x64.dll                   |
-| Detection Source | Sysmon Event Logs                     |
-| MITRE Technique  | T1055.001                             |
-| MITRE Tactics    | Defense Evasion, Privilege Escalation |
+| Component        | Description            |
+| ---------------- | ---------------------- |
+| Wazuh Server     | Version 4.5.4          |
+| Wazuh Agent      | Windows Agent 4.5.4    |
+| Operating System | Windows 10             |
+| Sysmon           | Sysinternals Sysmon    |
+| Attack Tool      | InjectProc             |
+| Payload          | hello-world-x64.dll    |
+| Technique        | MITRE ATT&CK T1055.001 |
 
 ---
 
-# 🔬 MITRE ATT&CK Mapping
-
-| Technique | Name                           |
-| --------- | ------------------------------ |
-| T1055     | Process Injection              |
-| T1055.001 | Dynamic-link Library Injection |
-
-### Associated Tactics
-
-* Defense Evasion (TA0005)
-* Privilege Escalation (TA0004)
-
----
-
-# 🏛️ Architecture
+## Architecture
 
 ```text
-┌─────────────────────┐
-│ Windows Endpoint    │
-│ InjectProc.exe      │
-│ hello-world-x64.dll │
-└──────────┬──────────┘
-           │
-           ▼
-┌─────────────────────┐
-│ Sysmon              │
-│ Event ID 8          │
-└──────────┬──────────┘
-           │
-           ▼
-┌─────────────────────┐
-│ Wazuh Agent         │
-└──────────┬──────────┘
-           │
-           ▼
-┌─────────────────────┐
-│ Wazuh Manager       │
-└──────────┬──────────┘
-           │
-           ▼
-┌─────────────────────┐
-│ Wazuh Dashboard     │
-│ Security Alert      │
-└─────────────────────┘
+Windows Endpoint
+       │
+       ▼
+InjectProc.exe + hello-world-x64.dll
+       │
+       ▼
+Sysmon Event Logs
+       │
+       ▼
+Wazuh Agent
+       │
+       ▼
+Wazuh Manager
+       │
+       ▼
+Wazuh Dashboard Alert
 ```
 
 ---
 
-# 📋 Prerequisites
+## Prerequisites
 
-Install and configure the following:
+Before performing the attack simulation, install and configure the following components:
 
 * Microsoft Visual C++ Redistributable
-* Sysmon
-* Wazuh Agent
-* Wazuh Manager
 * InjectProc
 * hello-world-x64.dll
+* Sysmon
+* Wazuh Agent
+* Wazuh Manager 4.5.4
 
 ---
 
-# ⚙️ Step 1 – Install Sysmon
+# Installation & Configuration
 
-Install Sysmon with a monitoring configuration.
+This section describes the step-by-step setup of the lab environment used to simulate and detect DLL Injection attacks.
+
+---
+
+## Step 1: Install Microsoft Visual C++ Redistributable
+
+Install the required Visual C++ runtime on the Windows endpoint to ensure proper execution of InjectProc and related binaries.
+
+---
+
+## Step 2: Download InjectProc Tool
+
+Download the **InjectProc** tool and the DLL payload (**hello-world-x64.dll**) and place them in a dedicated working directory.
+
+### Directory Structure
+
+```text
+C:\Users\fazleh\Downloads\DLLInjection\
+│
+├── InjectProc.exe
+├── hello-world-x64.dll
+```
+
+---
+
+## Step 3: Install and Configure Wazuh Agent
+
+Install the Wazuh agent on the Windows endpoint and register it with the Wazuh Manager.
+
+Verify the agent is successfully connected to the manager before continuing.
+
+---
+
+## Step 4: Install Sysmon
+
+Install Sysmon using Sysinternals Sysmon and a predefined configuration file.
+
+### Installation Command
 
 ```powershell
 .\sysmon64.exe -accepteula -i sysmonconfig.xml
 ```
 
-Verify installation:
+### Verify Installation
 
 ```powershell
 Get-Service sysmon64
 ```
 
-Expected Result:
-
-```text
-Status   Name
-------   ----
-Running  sysmon64
-```
+Expected output should show the Sysmon service in the **Running** state.
 
 ---
 
-# ⚙️ Step 2 – Configure Wazuh Agent
+## Step 5: Integrate Sysmon Logs with Wazuh
 
-Add Sysmon log collection to:
-
-```text
-C:\Program Files (x86)\ossec-agent\ossec.conf
-```
-
-Configuration:
+Edit the Wazuh Agent configuration file (`ossec.conf`) and add the following configuration:
 
 ```xml
 <localfile>
@@ -163,23 +130,19 @@ Configuration:
 </localfile>
 ```
 
-Restart the agent:
-
-```powershell
-Restart-Service Wazuh
-```
+Restart the Wazuh agent to apply the changes.
 
 ---
 
-# ⚙️ Step 3 – Configure Wazuh Detection Rules
+## Step 6: Create Custom Detection Rules in Wazuh
 
-Edit:
+Edit the local rules file on the Wazuh Manager:
 
 ```bash
-/var/ossec/etc/rules/local_rules.xml
+sudo nano /var/ossec/etc/rules/local_rules.xml
 ```
 
-Add:
+Add the following rules:
 
 ```xml
 <group name="windows,sysmon">
@@ -187,9 +150,9 @@ Add:
   <rule id="100200" level="12">
     <if_sid>61610</if_sid>
     <description>
-      Possible process injection activity detected from "$(win.eventdata.sourceImage)" on "$(win.eventdata.targetImage)"
+      Possible process injection activity detected from "$(win.eventdata.sourceImage)"
+      on "$(win.eventdata.targetImage)"
     </description>
-
     <mitre>
       <id>T1055.001</id>
     </mitre>
@@ -200,13 +163,15 @@ Add:
     <field name="win.eventdata.sourceImage" type="pcre2">
       (C:\\\\Windows\\\\system32)|chrome.exe
     </field>
-    <description>Ignore Windows binaries and Chrome</description>
+    <description>
+      Ignore Windows binaries and Chrome
+    </description>
   </rule>
 
 </group>
 ```
 
-Restart Wazuh:
+Restart the Wazuh Manager after saving the configuration.
 
 ```bash
 sudo systemctl restart wazuh-manager
@@ -214,157 +179,135 @@ sudo systemctl restart wazuh-manager
 
 ---
 
-# 🚨 Attack Simulation
+# Attack Simulation
 
-The DLL Injection activity was simulated using InjectProc.
+After completing the setup, execute the DLL injection attack using InjectProc.
 
-Command executed:
+### Attack Command
 
 ```cmd
 InjectProc.exe dll_inj hello-world-x64.dll cmd.exe
 ```
 
-Attack Flow:
-
-1. InjectProc starts.
-2. Target process selected (cmd.exe).
-3. DLL loaded into target process.
-4. Remote thread created.
-5. Sysmon logs Event ID 8.
-6. Wazuh receives telemetry.
-7. Alert generated.
+This injects the DLL into the `cmd.exe` process using the `LoadLibraryW` technique.
 
 ---
 
-# 📊 Event Analysis
+# Sysmon Event Analysis
 
-## Sysmon Detection
+Sysmon generates **Event ID 8 (CreateRemoteThread)**, which is a strong indicator of process injection activity.
 
-### Event ID
+### Key Observations
 
-```text
-Event ID 8
-```
-
-### Event Name
-
-```text
-CreateRemoteThread
-```
-
-### Indicators Observed
-
-| Field          | Value          |
-| -------------- | -------------- |
-| Source Process | InjectProc.exe |
-| Target Process | cmd.exe        |
-| Start Function | LoadLibraryW   |
-| Behavior       | DLL Injection  |
+| Field          | Value                  |
+| -------------- | ---------------------- |
+| Source Process | InjectProc.exe         |
+| Target Process | cmd.exe                |
+| Technique      | LoadLibraryW Injection |
+| Event ID       | 8                      |
+| Event Type     | CreateRemoteThread     |
 
 ---
 
-# 🛡️ Wazuh Alert Analysis
+# Wazuh Detection
 
-## Detection Details
+Wazuh successfully detected the DLL injection behavior and generated an alert based on the custom rule.
 
-| Field          | Value             |
-| -------------- | ----------------- |
-| Rule ID        | 100200            |
-| Severity Level | 12                |
-| Technique      | T1055.001         |
-| Detection Type | DLL Injection     |
-| Source         | Sysmon Event ID 8 |
+### Alert Details
 
-### Generated Alert
-
-```text
-Possible process injection activity detected
-```
+| Property        | Value                                 |
+| --------------- | ------------------------------------- |
+| Rule ID         | 100200                                |
+| Alert Level     | 12                                    |
+| MITRE Technique | T1055.001                             |
+| Technique Name  | Dynamic-link Library Injection        |
+| Tactics         | Defense Evasion, Privilege Escalation |
 
 ---
 
-# 📸 [Screenshots](https://github.com/bappy-cybersec142225/-DLL-Injection-Attack-Detection-using-Wazuh-SIEM/tree/main/Screenshots)
-
-Include screenshots in the following order:
-
-1. Visual C++ Installation
-2. InjectProc Download
-3. Payload Download
-4. Wazuh Agent Deployment
-5. Agent Connected to Manager
-6. Sysmon Installation
-7. Sysmon Verification
-8. Wazuh Agent Configuration
-9. Wazuh Rule Creation
-10. Attack Execution
-11. Sysmon Event Viewer Logs
-12. Wazuh Alert Dashboard
-
----
-
-# 🔍 Detection Logic
-
-The detection relies on:
-
-* Sysmon Event ID 8 (CreateRemoteThread)
-* Source process analysis
-* Target process monitoring
-* Wazuh correlation rules
-* MITRE ATT&CK mapping
-
-Detection Chain:
+# Detection Workflow
 
 ```text
 DLL Injection
-     ↓
-CreateRemoteThread
-     ↓
+      │
+      ▼
 Sysmon Event ID 8
-     ↓
-Wazuh Rule Match
-     ↓
-SOC Alert
+(CreateRemoteThread)
+      │
+      ▼
+Wazuh Agent
+      │
+      ▼
+Wazuh Custom Rule 100200
+      │
+      ▼
+MITRE ATT&CK Mapping
+(T1055.001)
+      │
+      ▼
+Dashboard Alert
 ```
 
 ---
 
-# 📈 Key Findings
+# Key Findings
 
-* DLL Injection generated Sysmon Event ID 8.
-* Wazuh successfully ingested Sysmon logs.
-* Custom rules detected process injection behavior.
-* MITRE ATT&CK mapping provided threat context.
-* SOC analysts gained visibility into process injection activity.
-
----
-
-# 🎓 Lessons Learned
-
-* Sysmon significantly improves endpoint visibility.
-* Process injection techniques leave detectable artifacts.
-* Wazuh can effectively correlate Sysmon telemetry.
-* MITRE ATT&CK mapping enhances investigation workflows.
-* Custom detection rules improve threat coverage.
+* DLL injection activity generated Sysmon Event ID 8.
+* Wazuh successfully analyzed Sysmon telemetry.
+* Process injection behavior was detected and classified.
+* Wazuh mapped the activity to MITRE ATT&CK T1055.001.
+* Security analysts gained visibility into Defense Evasion and Privilege Escalation techniques.
 
 ---
 
-# ✅ Conclusion
+# Conclusion
 
-This project successfully demonstrated end-to-end detection of a DLL Injection attack using Sysmon and Wazuh. The attack simulation generated telemetry that was collected, analyzed, and mapped to MITRE ATT&CK T1055.001, providing a practical example of how SOC analysts can identify process injection techniques in real-world environments.
+This lab demonstrated how DLL Injection attacks can be detected using **Sysmon** for telemetry generation and **Wazuh** for log analysis and alerting.
+
+The implementation successfully mapped malicious behavior to the MITRE ATT&CK framework, providing valuable visibility into process injection techniques commonly used by attackers. This approach can help Security Operations Center (SOC) teams improve detection coverage for advanced endpoint threats.
 
 ---
 
-# 📚 References
+# References
 
 * Wazuh Documentation
-* Wazuh Blog – Detecting Process Injection Attacks
 * Microsoft Sysinternals Sysmon
 * MITRE ATT&CK Framework
-* Windows Event Logging Documentation
+* Wazuh Blog – Detecting Process Injection Attacks with Wazuh
 
 ---
 
-## 👨‍💻 Author
+## MITRE ATT&CK Mapping
 
-**Bappy Sharma**
-* IT Cybersecurity Enthusiast
+| Technique ID | Technique                      |
+| ------------ | ------------------------------ |
+| T1055.001    | Dynamic-link Library Injection |
+
+| Tactic               |
+| -------------------- |
+| Defense Evasion      |
+| Privilege Escalation |
+
+---
+
+
+**Focus Areas:**
+
+* Wazuh SIEM
+* Sysmon Monitoring
+* Endpoint Detection
+* MITRE ATT&CK Mapping
+* Threat Detection Engineering
+
+## Screenshots:
+
+1. Sysmon Event ID 8 log
+2. Wazuh Dashboard alert
+3. Agent status page
+4. Architecture diagram
+5. MITRE ATT&CK mapping screenshot
+
+## Author
+
+Cybersecurity SOC Detection Engineering Lab Project
+
