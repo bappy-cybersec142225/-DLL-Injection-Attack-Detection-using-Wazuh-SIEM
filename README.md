@@ -63,6 +63,9 @@ Before performing the attack simulation, install and configure the following com
 * Wazuh Manager 4.5.4
 
 ---
+<img width="986" height="696" alt="Download MS Visual C++" src="https://github.com/user-attachments/assets/6a000e22-cbdd-4a7e-848c-0ed93a311f20" />
+
+<img width="481" height="297" alt="Install MS Visual C++" src="https://github.com/user-attachments/assets/d406b8fa-286a-44d3-9cec-62c81505b8ac" />
 
 # Installation & Configuration
 
@@ -79,6 +82,10 @@ Install the required Visual C++ runtime on the Windows endpoint to ensure proper
 ## Step 2: Download InjectProc Tool
 
 Download the **InjectProc** tool and the DLL payload (**hello-world-x64.dll**) and place them in a dedicated working directory.
+<img width="481" height="297" alt="Install MS Visual C++" src="https://github.com/user-attachments/assets/68124bdc-61fb-4e70-a77d-e059ab0dff2f" />
+<img width="962" height="623" alt="Download Hellow world ddl" src="https://github.com/user-attachments/assets/4b6b3856-8afe-41ae-8dcd-1df9f2e5711d" />
+<img width="657" height="190" alt="Download Hello world ddl" src="https://github.com/user-attachments/assets/f8a9f7b9-00e1-4805-9801-c9a1350ece3b" />
+<img width="979" height="480" alt="image" src="https://github.com/user-attachments/assets/2c533b7a-5dc1-434c-91b2-e7a472c6fafe" />
 
 ### Directory Structure
 
@@ -94,14 +101,20 @@ C:\Users\fazleh\Downloads\DLLInjection\
 ## Step 3: Install and Configure Wazuh Agent
 
 Install the Wazuh agent on the Windows endpoint and register it with the Wazuh Manager.
+<img width="1482" height="1912" alt="Wazuh agent deploy process" src="https://github.com/user-attachments/assets/0152a9f0-d336-4348-9824-4af95a8b3d0d" />
+<img width="659" height="593" alt="Wazuh agent active endpoint" src="https://github.com/user-attachments/assets/e39daab3-671d-4bb4-ac64-d0bd1353bc30" />
 
 Verify the agent is successfully connected to the manager before continuing.
+
+<img width="1912" height="518" alt="Wazuh agent active" src="https://github.com/user-attachments/assets/94b1219d-e5ed-4417-afb6-64a2ad20603f" />
 
 ---
 
 ## Step 4: Install Sysmon
 
 Install Sysmon using Sysinternals Sysmon and a predefined configuration file.
+<img width="620" height="382" alt="sysmon install verify" src="https://github.com/user-attachments/assets/40bc4ebc-ed86-43e9-81c9-1a73cc993765" />
+<img width="922" height="831" alt="result in Eventviewer" src="https://github.com/user-attachments/assets/559703fc-72d7-4844-83c9-913796a71b2f" />
 
 ### Installation Command
 
@@ -120,6 +133,8 @@ Expected output should show the Sysmon service in the **Running** state.
 ---
 
 ## Step 5: Integrate Sysmon Logs with Wazuh
+<img width="721" height="501" alt="wazuh agent ossec file edit for sysmon log" src="https://github.com/user-attachments/assets/5dc6277c-f5b2-4ddf-8e22-3f32b525cc1e" />
+<img width="320" height="280" alt="wazuh agent restart after edit" src="https://github.com/user-attachments/assets/f340cbe9-f378-4778-a559-7de1cd41ed7a" />
 
 Edit the Wazuh Agent configuration file (`ossec.conf`) and add the following configuration:
 
@@ -170,12 +185,14 @@ Add the following rules:
 
 </group>
 ```
+<img width="971" height="483" alt="add rules in wazuh manager" src="https://github.com/user-attachments/assets/6c0a02d0-7372-4074-a299-96f7b8efa49b" />
 
 Restart the Wazuh Manager after saving the configuration.
 
 ```bash
 sudo systemctl restart wazuh-manager
 ```
+<img width="1898" height="862" alt="wazuh deshboar event chack" src="https://github.com/user-attachments/assets/90c880f0-a51f-4a61-8228-4655af587b11" />
 
 ---
 
