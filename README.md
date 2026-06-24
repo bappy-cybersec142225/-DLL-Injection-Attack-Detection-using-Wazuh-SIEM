@@ -63,9 +63,12 @@ Before performing the attack simulation, install and configure the following com
 * Wazuh Manager 4.5.4
 
 ---
-<img width="986" height="696" alt="Download MS Visual C++" src="https://github.com/user-attachments/assets/6a000e22-cbdd-4a7e-848c-0ed93a311f20" />
+<img width="951" height="595" alt="Download InjectProc" src="https://github.com/user-attachments/assets/c7c7c635-7f7a-4720-9fa0-703a86ee2690" />
 
-<img width="481" height="297" alt="Install MS Visual C++" src="https://github.com/user-attachments/assets/d406b8fa-286a-44d3-9cec-62c81505b8ac" />
+<img width="962" height="623" alt="Download Hellow world ddl" src="https://github.com/user-attachments/assets/7d195974-b80a-47db-8bab-7bddd9de7a12" />
+
+<img width="657" height="190" alt="Download Hello world ddl" src="https://github.com/user-attachments/assets/cbbe3f7f-64cd-4274-888b-c0225b66e87e" />
+
 
 # Installation & Configuration
 
@@ -82,7 +85,7 @@ Install the required Visual C++ runtime on the Windows endpoint to ensure proper
 ## Step 2: Download InjectProc Tool
 
 Download the **InjectProc** tool and the DLL payload (**hello-world-x64.dll**) and place them in a dedicated working directory.
-<img width="481" height="297" alt="Install MS Visual C++" src="https://github.com/user-attachments/assets/68124bdc-61fb-4e70-a77d-e059ab0dff2f" />
+
 <img width="962" height="623" alt="Download Hellow world ddl" src="https://github.com/user-attachments/assets/4b6b3856-8afe-41ae-8dcd-1df9f2e5711d" />
 <img width="657" height="190" alt="Download Hello world ddl" src="https://github.com/user-attachments/assets/f8a9f7b9-00e1-4805-9801-c9a1350ece3b" />
 
