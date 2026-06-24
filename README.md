@@ -85,7 +85,7 @@ Download the **InjectProc** tool and the DLL payload (**hello-world-x64.dll**) a
 <img width="481" height="297" alt="Install MS Visual C++" src="https://github.com/user-attachments/assets/68124bdc-61fb-4e70-a77d-e059ab0dff2f" />
 <img width="962" height="623" alt="Download Hellow world ddl" src="https://github.com/user-attachments/assets/4b6b3856-8afe-41ae-8dcd-1df9f2e5711d" />
 <img width="657" height="190" alt="Download Hello world ddl" src="https://github.com/user-attachments/assets/f8a9f7b9-00e1-4805-9801-c9a1350ece3b" />
-<img width="979" height="480" alt="image" src="https://github.com/user-attachments/assets/2c533b7a-5dc1-434c-91b2-e7a472c6fafe" />
+
 
 ### Directory Structure
 
@@ -185,7 +185,7 @@ Add the following rules:
 
 </group>
 ```
-<img width="971" height="483" alt="add rules in wazuh manager" src="https://github.com/user-attachments/assets/6c0a02d0-7372-4074-a299-96f7b8efa49b" />
+
 
 Restart the Wazuh Manager after saving the configuration.
 
@@ -205,7 +205,7 @@ After completing the setup, execute the DLL injection attack using InjectProc.
 ```cmd
 InjectProc.exe dll_inj hello-world-x64.dll cmd.exe
 ```
-
+<img width="979" height="480" alt="image" src="https://github.com/user-attachments/assets/2c533b7a-5dc1-434c-91b2-e7a472c6fafe" />
 This injects the DLL into the `cmd.exe` process using the `LoadLibraryW` technique.
 
 ---
@@ -229,7 +229,7 @@ Sysmon generates **Event ID 8 (CreateRemoteThread)**, which is a strong indicato
 # Wazuh Detection
 
 Wazuh successfully detected the DLL injection behavior and generated an alert based on the custom rule.
-
+<img width="971" height="483" alt="add rules in wazuh manager" src="https://github.com/user-attachments/assets/6c0a02d0-7372-4074-a299-96f7b8efa49b" />
 ### Alert Details
 
 | Property        | Value                                 |
